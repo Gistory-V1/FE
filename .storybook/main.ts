@@ -1,0 +1,23 @@
+import type { StorybookConfig } from "@storybook/nextjs";
+
+const config: StorybookConfig = {
+  stories: [
+    "../stories/**/*.mdx",
+    "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+  ],
+  addons: [
+    "@storybook/addon-essentials",
+    "@chromatic-com/storybook",
+    "@storybook/addon-interactions",
+  ],
+  framework: {
+    name: "@storybook/nextjs/addon-postcss",
+    options: {
+      postcssLoaderOptions: {
+        implementation: require("postcss"),
+      },
+    },
+  },
+  staticDirs: ["..\\public"],
+};
+export default config;
