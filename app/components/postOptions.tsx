@@ -10,7 +10,10 @@ export default function PostOptions() {
   const [isLiked, setIsLiked] = useState(false);
   const [option, setOption] = useState(false);
   return (
-    <div className="flex justify-between items-center mt-4">
+    <div
+      style={{ border: "1px solid #A6A6A6" }}
+      className="flex justify-between items-center rounded-2xl px-2 mt-4 py-1 w-[100px]"
+    >
       <div className="flex items-center">
         {!isLiked ? (
           <Image src={Heart} alt="빈 하트" onClick={() => setIsLiked(true)} />
