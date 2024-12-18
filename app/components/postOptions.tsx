@@ -39,7 +39,11 @@ export default function PostOptions() {
       .then((res) => {
         setCount(res.data.likeCount);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setCount(count + 1);
+        setIsLiked(true);
+      });
   }
   return (
     <div>
