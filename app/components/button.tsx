@@ -2,6 +2,8 @@ import React from "react";
 
 export default function Button({ label }: { label: string }) {
   return (
-    <button className=" px-4 border-gray-100 py-2 rounded">{label}</button>
+    <button className="w-[400px] mt-6 py-3 border text-black1 border-black1 rounded">
+      {label}
+    </button>
   );
 }
