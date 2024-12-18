@@ -7,14 +7,29 @@ import Option from "../svg/option.svg";
 import { useState } from "react";
 import axios from "axios";
 import { url } from "../../config";
+import { useParams } from "next/navigation";
+import { set } from "react-hook-form";
 
 export default function PostOptions() {
   const [isLiked, setIsLiked] = useState(false);
   const [option, setOption] = useState(false);
   const [count, setCount] = useState(0);
+  const params = useParams();
   function like() {
     setCount(count + 1);
     setIsLiked(true);
+    axios
+      .post(`${url}/like`, {
+        postId: params.id,
+      })
+      .then((res) => {
+        setCount(res.data.likeCount);
+      })
+      .catch((err) => {
+        setCount(count - 1);
+        setIsLiked(false);
+        console.log(err);
+      });
   }
   function cancel() {
     setCount(count - 1);
