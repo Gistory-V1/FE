@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../app/globals.css";
 import Header from "./components/header";
-import Post from "./components/post";
 import PostProps from "./type/type";
 import { url } from "../config";
 import Sub from "./components/sub";
@@ -24,8 +23,16 @@ export default function Home() {
         console.error(error);
       }
     };
-
+    const fetchSubPosts = async () => {
+      try {
+        const response = await axios.get(`${url}/rank-sub`);
+        setSubPosts(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
     fetchLankPosts();
+    fetchSubPosts();
   }, []);
   const example = {
     postId: 1,
@@ -42,13 +49,8 @@ export default function Home() {
       <div className="flex px-6">
         <div className="flex flex-col gap-5 w-2/3">
           {lankPosts.map((post) => (
-            <Post key={post.postId} post={post} />
+            <Lank key={post.postId} post={post} />
           ))}
-          <Lank post={example} />
-          <Lank post={example} />
-          <Lank post={example} />
-          <Lank post={example} />
-          <Lank post={example} />
         </div>
         <div
           className=" flex flex-col items-left border-l pl-10 h-full border-l-gray1"
@@ -57,6 +59,9 @@ export default function Home() {
           <Profile />
           <div className="mt-2 flex flex-col gap-5">
             <h2 className="font-extrabold text-[20px]">구독자 왕👑</h2>
+            {subPosts.map((post) => (
+              <Sub key={post.postId} post={post} />
+            ))}
           </div>
         </div>
       </div>
