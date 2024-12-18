@@ -9,23 +9,23 @@ import PostProps from "./type/type";
 import { url } from "../config";
 import Sub from "./components/sub";
 import Lank from "./components/lank";
-import LoginOption from "./components/loginOption";
 import Profile from "./components/profile";
 
 export default function Home() {
-  const [posts, setPosts] = useState<PostProps[]>([]);
+  const [lankPosts, setLankPosts] = useState<PostProps[]>([]);
+  const [subPosts, setSubPosts] = useState<PostProps[]>([]);
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchLankPosts = async () => {
       try {
-        const response = await axios.get(`${url}/main`);
-        setPosts(response.data);
+        const response = await axios.get(`${url}/rank-like`);
+        setLankPosts(response.data);
       } catch (error) {
         console.error(error);
       }
     };
 
-    fetchPosts();
+    fetchLankPosts();
   }, []);
   const example = {
     postId: 1,
@@ -41,7 +41,7 @@ export default function Home() {
       <Header />
       <div className="flex px-6">
         <div className="flex flex-col gap-5 w-2/3">
-          {posts.map((post) => (
+          {lankPosts.map((post) => (
             <Post key={post.postId} post={post} />
           ))}
           <Lank post={example} />
@@ -57,12 +57,6 @@ export default function Home() {
           <Profile />
           <div className="mt-2 flex flex-col gap-5">
             <h2 className="font-extrabold text-[20px]">구독자 왕👑</h2>
-            <Sub />
-            <Post post={example} />
-            <Post post={example} />
-            <Sub />
-            <Post post={example} />
-            <Post post={example} />
           </div>
         </div>
       </div>
