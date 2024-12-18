@@ -29,7 +29,7 @@ export default function Profile() {
         className=" flex my-8 justify-between w-full"
       >
         <span className="">조회수</span>
-        <span className="mb-8">0회</span>
+        <span className="mb-8 font-bold">0회</span>
       </div>
     </div>
   );
