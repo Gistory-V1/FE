@@ -6,8 +6,14 @@ import axios from "axios";
 import { url } from "../../config";
 import { useState } from "react";
 
-export default function Sub() {
-  const [count, setCount] = useState(0);
+interface SubProps {
+  rank: number;
+  sub: number;
+  name: string;
+}
+
+export default function Sub(post: SubProps) {
+  const [count, setCount] = useState(post.sub);
   const [sub, setSub] = useState(false);
   function subscribe() {
     axios
@@ -34,9 +40,10 @@ export default function Sub() {
   }
   return (
     <div className="flex justify-between items-center w-[420px] rounded-md p-4 bg-gray4">
+      <span className="font-bold text-black1 text-[30px]">{post.rank}</span>
       <div className="flex  gap-2 flex-col">
-        <h3 className="text-20 font-bold">{"배경진"}</h3>
-        <span className="text-gray3 text-[12px]">✅ 구독자 {3}명</span>
+        <h3 className="text-20 font-bold">{post.name}</h3>
+        <span className="text-gray3 text-[12px]">✅ 구독자 {post.sub}명</span>
       </div>
       <button
         onClick={sub ? cancel : subscribe}
