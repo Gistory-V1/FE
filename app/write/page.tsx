@@ -4,6 +4,7 @@ import Header from "../components/header";
 import axios from "axios";
 import { url } from "../../config";
 import { useRouter } from "next/navigation";
+import Black from "../components/black";
 
 export default function writePage() {
   const router = useRouter();
@@ -41,12 +42,7 @@ export default function writePage() {
           placeholder="여러분들의 생각을 적어보세요"
         />
 
-        <button
-          onClick={sendPost}
-          className="m-10 text-white bg-black1 rounded-3xl px-6 py-3"
-        >
-          완료
-        </button>
+        <Black label="작성" onClick={sendPost} />
       </div>
     </div>
   );
