@@ -5,7 +5,10 @@ import Search from "../svg/search.svg";
 
 export default function Header() {
   return (
-    <header className="py-6 border-b-black border items-center flex justify-between px-[60px] focus:outline-none">
+    <header
+      style={{ borderBottom: "1px solid #868686" }}
+      className="py-6 items-center flex justify-between px-[60px] focus:outline-none"
+    >
       <div className="flex border gap-8">
         <Image src={TextLogo} alt="로고" />
         <Image className="absolute left-48 top-8" src={Search} alt="검색" />
