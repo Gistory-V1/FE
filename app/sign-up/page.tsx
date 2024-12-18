@@ -5,6 +5,9 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import Image from "next/image";
 import Button from "../components/button";
 import Logo from "../svg/textlogo.svg";
+import axios from "axios";
+import { url } from "../../config";
+import { useRouter } from "next/navigation";
 
 interface SignUpFormInputs {
   email: string;
@@ -12,6 +15,7 @@ interface SignUpFormInputs {
 }
 
 export default function SignUpPage() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -19,9 +23,18 @@ export default function SignUpPage() {
   } = useForm<SignUpFormInputs>();
 
   const onSubmit: SubmitHandler<SignUpFormInputs> = (data) => {
-    console.log("회원가입 데이터:", data);
+    axios
+      .post(`${url}/auth/signup`, {
+        email: data.email,
+        password: data.password,
+      })
+      .then(() => {
+        router.push("/login");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
-
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="flex flex-col items-center">
@@ -30,7 +43,6 @@ export default function SignUpPage() {
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col gap-4 items-center"
         >
-          {/* 이메일 입력 */}
           <div className="flex flex-col gap-2">
             <label htmlFor="email">이메일</label>
             <input
@@ -51,8 +63,6 @@ export default function SignUpPage() {
               </span>
             )}
           </div>
-
-          {/* 비밀번호 입력 */}
           <div className="flex flex-col gap-2">
             <label htmlFor="password">비밀번호</label>
             <input
