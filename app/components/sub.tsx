@@ -10,16 +10,22 @@ export default function Sub() {
   const [count, setCount] = useState(0);
   const [sub, setSub] = useState(false);
   function subscribe() {
-    axios.post(`${url}/sub`).catch((err) => {
-      console.log(err);
-    });
+    axios
+      .post(`${url}/sub`)
+      .then((res) => {
+        setCount(res.data.subCount);
+        setSub(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
   function cancel() {
-    setSub(false);
     axios
       .delete(`${url}/sub`)
       .then((res) => {
         setCount(res.data.subCount);
+        setSub(false);
       })
       .catch((err) => {
         console.log(err);
