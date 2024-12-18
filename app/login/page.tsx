@@ -23,7 +23,17 @@ export default function LoginPage() {
   } = useForm<LoginFormInputs>();
 
   const onSubmit: SubmitHandler<LoginFormInputs> = (data) => {
-    console.log(data);
+    axios
+      .post(`${url}/auth/login`, {
+        email: data.email,
+        password: data.password,
+      })
+      .then(() => {
+        router.push("/");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   return (
