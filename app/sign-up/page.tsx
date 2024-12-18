@@ -59,6 +59,7 @@ export default function SignUpPage() {
               이메일
             </label>
             <input
+              placeholder="학교 이메일을 입력해주세요"
               style={{ border: errors.email ? "1px solid red" : "" }}
               id="email"
               type="email"
@@ -88,6 +89,7 @@ export default function SignUpPage() {
               비밀번호
             </label>
             <input
+              placeholder="특수문자를 포함한 8자 이상 12자 이내"
               style={{ border: errors.password ? "1px solid red" : "" }}
               id="password"
               type="password"
@@ -117,6 +119,7 @@ export default function SignUpPage() {
               비밀번호 재입력
             </label>
             <input
+              placeholder="비밀번호를 다시 입력해주세요"
               style={{ border: errors.confirmPassword ? "1px solid red" : "" }}
               id="confirmPassword"
               type="password"
