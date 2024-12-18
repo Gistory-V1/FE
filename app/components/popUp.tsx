@@ -1,4 +1,19 @@
+import axios from "axios";
+import { url } from "../../config";
+import { useRouter } from "next/navigation";
+
 export default function PopUp() {
+  const route = useRouter();
+  function Logout() {
+    axios
+      .post(`${url}/auth/logout`)
+      .then(() => {
+        route.push("/login");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   return (
     <div>
       <div>
@@ -6,7 +21,7 @@ export default function PopUp() {
         <span>s24023@gsm.hs.kr</span>
       </div>
       <ul className="flex gap-2" style={{ borderTop: "1px solid #A6A6A6" }}>
-        <li>로그아웃</li>
+        <li onClick={Logout}>로그아웃</li>
         <li>|</li>
         <li>회원탈퇴</li>
       </ul>
