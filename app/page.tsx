@@ -51,11 +51,11 @@ export default function Home() {
           <Lank post={example} />
         </div>
         <div
-          className=" flex flex-col items-left border-l px-10 h-full border-l-gray1"
+          className=" flex flex-col items-left border-l pl-10 h-full border-l-gray1"
           style={{ borderLeft: "1px solid #868686" }}
         >
           <Profile />
-          <div className="mt-10 flex flex-col gap-5">
+          <div className="mt-2 flex flex-col gap-5">
             <h2 className="font-extrabold text-[20px]">구독자 왕👑</h2>
             <Sub />
             <Post post={example} />
