@@ -5,6 +5,8 @@ import Heart from "../svg/heart.svg";
 import fill from "../svg/fillHeart.svg";
 import Option from "../svg/option.svg";
 import { useState } from "react";
+import axios from "axios";
+import { url } from "../../config";
 
 export default function PostOptions() {
   const [isLiked, setIsLiked] = useState(false);
@@ -17,6 +19,12 @@ export default function PostOptions() {
   function cancel() {
     setCount(count - 1);
     setIsLiked(false);
+    axios
+      .delete(`${url}/like`)
+      .then((res) => {
+        setCount(res.data.likeCount);
+      })
+      .catch((err) => console.log(err));
   }
   return (
     <div>
