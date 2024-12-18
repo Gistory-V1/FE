@@ -6,13 +6,13 @@ import "../app/globals.css";
 import Header from "./components/header";
 import PostProps from "./type/type";
 import { url } from "../config";
-import Sub from "./components/sub";
+import Sub, { SubProps } from "./components/sub";
 import Lank from "./components/lank";
 import Profile from "./components/profile";
 
 export default function Home() {
   const [lankPosts, setLankPosts] = useState<PostProps[]>([]);
-  const [subPosts, setSubPosts] = useState<PostProps[]>([]);
+  const [subPosts, setSubPosts] = useState<SubProps[]>([]);
 
   useEffect(() => {
     const fetchLankPosts = async () => {
@@ -23,6 +23,7 @@ export default function Home() {
         console.error(error);
       }
     };
+
     const fetchSubPosts = async () => {
       try {
         const response = await axios.get(`${url}/rank-sub`);
@@ -31,18 +32,11 @@ export default function Home() {
         console.error(error);
       }
     };
+
     fetchLankPosts();
     fetchSubPosts();
   }, []);
-  const example = {
-    postId: 1,
-    title: "하이티비",
-    author: "배경진",
-    view: 4,
-    createdAt: "1일 전",
-    sub: 3,
-    like: 2,
-  };
+
   return (
     <div>
       <Header />
@@ -53,14 +47,14 @@ export default function Home() {
           ))}
         </div>
         <div
-          className=" flex flex-col items-left border-l pl-10 h-full border-l-gray1"
+          className="flex flex-col items-left border-l pl-10 h-full border-l-gray1"
           style={{ borderLeft: "1px solid #868686" }}
         >
           <Profile />
           <div className="mt-2 flex flex-col gap-5">
             <h2 className="font-extrabold text-[20px]">구독자 왕👑</h2>
             {subPosts.map((post) => (
-              <Sub key={post.postId} post={post} />
+              <Sub key={post.name} {...post} />
             ))}
           </div>
         </div>
