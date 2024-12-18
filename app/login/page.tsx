@@ -40,25 +40,26 @@ export default function LoginPage() {
     <div className="flex justify-center items-center h-screen">
       <div
         style={{ border: "1px solid #A6A6A6" }}
-        className=" flex flex-col items-center"
+        className="flex flex-col items-center gap-20 rounded-lg py-12 px-10"
       >
         <Image width={180} height={50} src={Logo} alt="logo" />
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col gap-4 items-center"
+          className="flex flex-col gap-8 items-center"
         >
           <div className="flex flex-col gap-2">
             <label
-              className={errors.email?.message && "text-red-500"}
+              className={errors.email?.message ? "text-red-500" : ""}
               htmlFor="email"
             >
               이메일
             </label>
             <input
+              style={{ border: errors.email ? "1px solid red" : "" }}
               id="email"
               type="email"
               className={`border rounded-md px-4 py-2 w-[400px] ${
-                errors.email ? "text-red-500" : ""
+                errors.email ? "border-red-500" : ""
               }`}
               {...register("email", {
                 required: "이메일을 입력해주세요.",
@@ -68,7 +69,6 @@ export default function LoginPage() {
                 },
               })}
             />
-
             {errors.email && (
               <span className="text-red-500 text-[12px]">
                 {errors.email.message}
@@ -78,16 +78,17 @@ export default function LoginPage() {
 
           <div className="flex flex-col gap-2">
             <label
-              className={errors.password?.message && "text-red-500"}
+              className={errors.password?.message ? "text-red-500" : ""}
               htmlFor="password"
             >
               비밀번호
             </label>
             <input
+              style={{ border: errors.password ? "1px solid red" : "" }}
               id="password"
               type="password"
               className={`border rounded-md px-4 py-2 w-[400px] ${
-                errors.email ? "text-red-500" : ""
+                errors.password ? "border-red-500" : ""
               }`}
               {...register("password", {
                 required: "비밀번호를 입력해주세요.",

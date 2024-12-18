@@ -59,6 +59,7 @@ export default function SignUpPage() {
               이메일
             </label>
             <input
+              style={{ border: errors.email ? "1px solid red" : "" }}
               id="email"
               type="email"
               className={`border rounded-md px-4 py-2 w-[400px] ${
@@ -87,6 +88,7 @@ export default function SignUpPage() {
               비밀번호
             </label>
             <input
+              style={{ border: errors.password ? "1px solid red" : "" }}
               id="password"
               type="password"
               className={`border rounded-md px-4 py-2 w-[400px] ${
@@ -115,6 +117,7 @@ export default function SignUpPage() {
               비밀번호 재입력
             </label>
             <input
+              style={{ border: errors.confirmPassword ? "1px solid red" : "" }}
               id="confirmPassword"
               type="password"
               className={`border rounded-md px-4 py-2 w-[400px] ${
