@@ -4,7 +4,10 @@ import PostProps from "../type/type";
 
 export default function Lank({ post }: { post: PostProps }) {
   return (
-    <div className="flex flex-col gap-5 px-4 py-3 border-b border-b-gray-400 w-[420px]">
+    <div
+      style={{ borderBottom: "1px solid #D9D9D9" }}
+      className="flex flex-col px-0 gap-5 py-3 border-b border-b-gray-400 w-full"
+    >
       <div className="text-gray3">
         <span className="font-bold text-[30px]">1/</span>
         <span>{post.author}</span>
