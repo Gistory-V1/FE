@@ -9,6 +9,15 @@ import { useState } from "react";
 export default function PostOptions() {
   const [isLiked, setIsLiked] = useState(false);
   const [option, setOption] = useState(false);
+  const [count, setCount] = useState(0);
+  function like() {
+    setCount(count + 1);
+    setIsLiked(true);
+  }
+  function cancel() {
+    setCount(count - 1);
+    setIsLiked(false);
+  }
   return (
     <div>
       <div
@@ -17,9 +26,9 @@ export default function PostOptions() {
       >
         <div className="flex items-center">
           {!isLiked ? (
-            <Image src={Heart} alt="빈 하트" onClick={() => setIsLiked(true)} />
+            <Image src={Heart} alt="빈 하트" onClick={like} />
           ) : (
-            <Image src={fill} alt="하트" onClick={() => setIsLiked(false)} />
+            <Image src={fill} alt="하트" onClick={cancel} />
           )}
           <span>22</span>
         </div>
