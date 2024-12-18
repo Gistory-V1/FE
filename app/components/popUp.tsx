@@ -14,6 +14,16 @@ export default function PopUp() {
         console.log(err);
       });
   }
+  function Delete() {
+    axios
+      .delete(`${url}/auth/delete`)
+      .then(() => {
+        route.push("/login");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   return (
     <div>
       <div>
@@ -23,7 +33,7 @@ export default function PopUp() {
       <ul className="flex gap-2" style={{ borderTop: "1px solid #A6A6A6" }}>
         <li onClick={Logout}>로그아웃</li>
         <li>|</li>
-        <li>회원탈퇴</li>
+        <li onClick={Delete}>회원탈퇴</li>
       </ul>
     </div>
   );
