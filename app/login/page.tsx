@@ -40,12 +40,12 @@ export default function LoginPage() {
     <div className="flex justify-center items-center h-screen">
       <div
         style={{ border: "1px solid #A6A6A6" }}
-        className=" flex flex-col items-center gap-20 rounded-lg py-12 px-10"
+        className=" flex flex-col items-center"
       >
         <Image width={180} height={50} src={Logo} alt="logo" />
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col gap-8 items-center"
+          className="flex flex-col gap-4 items-center"
         >
           <div className="flex flex-col gap-2">
             <label
