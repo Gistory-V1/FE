@@ -8,7 +8,6 @@ import { useState } from "react";
 import axios from "axios";
 import { url } from "../../config";
 import { useParams } from "next/navigation";
-import { set } from "react-hook-form";
 
 export default function PostOptions() {
   const [isLiked, setIsLiked] = useState(false);
