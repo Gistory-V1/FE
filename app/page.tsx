@@ -4,14 +4,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../app/globals.css";
 import Header from "./components/header";
-import PostProps from "./type/type";
 import { url } from "../config";
 import Sub, { SubProps } from "./components/sub";
-import Lank from "./components/lank";
+import Lank, { postLankProps } from "./components/lank";
 import Profile from "./components/profile";
 
 export default function Home() {
-  const [lankPosts, setLankPosts] = useState<PostProps[]>([]);
+  const [lankPosts, setLankPosts] = useState<postLankProps[]>([]);
   const [subPosts, setSubPosts] = useState<SubProps[]>([]);
 
   useEffect(() => {
@@ -43,7 +42,7 @@ export default function Home() {
       <div className="flex px-6">
         <div className="flex flex-col gap-5 w-2/3">
           {lankPosts.map((post) => (
-            <Lank key={post.postId} post={post} />
+            <Lank key={post.rank} post={post} />
           ))}
         </div>
         <div
@@ -54,7 +53,7 @@ export default function Home() {
           <div className="mt-2 flex flex-col gap-5">
             <h2 className="font-extrabold text-[20px]">구독자 왕👑</h2>
             {subPosts.map((post) => (
-              <Sub key={post.name} {...post} />
+              <Sub key={post.rank} {...post} />
             ))}
           </div>
         </div>
