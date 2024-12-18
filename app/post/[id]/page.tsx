@@ -6,10 +6,16 @@ import PostOptions from "../../components/postOptions";
 import axios from "axios";
 import { useParams } from "next/navigation";
 import { url } from "../../../config";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import PostProps from "../../type/type";
+
+interface ExtendedPostProps extends PostProps {
+  content: string;
+}
 
 export default function Post() {
-  const [data, setData] = useState({});
+  const [data, setData] = useState<ExtendedPostProps | null>(null);
+
   const params = useParams();
   function getData() {
     axios
@@ -21,14 +27,17 @@ export default function Post() {
         console.log(err);
       });
   }
+  useEffect(() => {
+    getData();
+  }, []);
   return (
     <div>
       <Header />
       <div className="w-full flex justify-center p-4">
         <div className="w-4/5 flex">
           <div className="w-2/3">
-            <h1>제목입니다다</h1>
-            <p>내용입니다다다다다다</p>
+            <h1>{data?.title}</h1>
+            <p>{data?.content}</p>
             <PostOptions />
           </div>
           <div>
