@@ -1,7 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Heart from "../svg/heart.svg";
 import PostProps from "../type/type";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function Post({ post }: { post: PostProps }) {
   const route = useRouter();
