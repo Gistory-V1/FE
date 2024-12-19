@@ -6,10 +6,10 @@ import { url } from "../../config";
 import { useRouter } from "next/navigation";
 import Black from "../components/black";
 
-export default function writePage() {
+export default function WritePage() {
   const router = useRouter();
-  let title = useRef<HTMLInputElement>(null);
-  let content = useRef<HTMLTextAreaElement>(null);
+  const title = useRef<HTMLInputElement>(null);
+  const content = useRef<HTMLTextAreaElement>(null);
 
   async function sendPost() {
     if (title.current?.value === "" || content.current?.value === "") {
