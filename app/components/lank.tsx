@@ -2,12 +2,12 @@ import Image from "next/image";
 import Heart from "../svg/heart.svg";
 
 export interface postLankProps {
-  rank: 1;
-  name: String;
-  title: String;
+  rank: number;
+  name: string;
+  title: string;
   likeCount: number;
   views: number;
-  createdAt: String;
+  createdAt: string;
 }
 
 export default function Lank({ post }: { post: postLankProps }) {
