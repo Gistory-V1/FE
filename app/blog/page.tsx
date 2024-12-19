@@ -9,7 +9,7 @@ export default function BlogPage() {
       <div className=" w-full flex justify-center p-4">
         <div className="w-4/5 flex">
           <div className="w-2/3 flex flex-col gap-8">
-            <h1 className="font-bold text-[26px]">모태환 님의 블로그</h1>
+            <h1 className="font-bold text-[26px] mt-8">모태환 님의 블로그</h1>
             <div
               style={{ borderBottom: "1px solid #A6A6A6" }}
               className="flex font-bold text-[20px] pb-6 w-[650px]"
