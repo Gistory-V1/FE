@@ -1,4 +1,5 @@
-import { useParams } from "next/navigation";
+"use client";
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Header from "../../components/header";
@@ -23,7 +24,7 @@ export default function Post() {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [data?.postId]);
 
   return (
     <div>
