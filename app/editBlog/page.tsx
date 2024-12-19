@@ -1,10 +1,12 @@
+"use client";
+
 import Header from "../components/header";
-import { useRef } from "react";
 import Black from "../components/black";
+import { useRef } from "react";
 
 export default function EditPage() {
-  let title = useRef<HTMLInputElement>(null);
-  let content = useRef<HTMLTextAreaElement>(null);
+  const title = useRef<HTMLInputElement>(null);
+  const content = useRef<HTMLTextAreaElement>(null);
   return (
     <div>
       <Header />
