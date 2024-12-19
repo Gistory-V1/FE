@@ -11,7 +11,7 @@ export default function Post({ post }: { post: PostProps }) {
     <div
       onClick={() => route.push(`/post/${post.postId}`)}
       style={{ borderBottom: "1px solid #D9D9D9" }}
-      className="flex flex-col gap-5 px-4 py-3 border-b border-b-gray-400 w-[420px]"
+      className="flex flex-col gap-5 px-4 py-3 border-b border-b-gray-400 w-[650px]"
     >
       <h3 className="font-bold">{post.title}</h3>
       <ul className="flex gap-4 items-center text-gray1 text-[12px]">
