@@ -9,11 +9,10 @@ import { useParams } from "next/navigation";
 import { useRouter } from "next/router";
 
 interface PostOptionsProps {
-  postId?: number; // postId는 선택적입니다.
+  postId?: number;
 }
 
 export default function PostOptions({ postId }: PostOptionsProps) {
-  // props는 객체 형태로 받습니다.
   const [isLiked, setIsLiked] = useState(false);
   const [option, setOption] = useState(false);
   const [count, setCount] = useState(0);
@@ -72,7 +71,10 @@ export default function PostOptions({ postId }: PostOptionsProps) {
       {option && (
         <ul className="">
           <li
-            onClick={() => route.push(`/postEdit`, { query: { id: postId } })}
+            onClick={() => {
+              localStorage.setItem("postId", postId ? postId.toString() : "");
+              route.push(`/postEdit`);
+            }}
             style={{ borderBottom: "1px solid #A6A6A6" }}
           >
             수정
