@@ -17,7 +17,7 @@ export default function Post() {
   const [data, setData] = useState<ExtendedPostProps | null>(null);
 
   const params = useParams();
-  function getData() {
+  useEffect(() => {
     axios
       .get(`${url}/post/${params.id}`)
       .then((res) => {
@@ -26,9 +26,6 @@ export default function Post() {
       .catch((err) => {
         console.log(err);
       });
-  }
-  useEffect(() => {
-    getData();
   }, []);
   return (
     <div>
