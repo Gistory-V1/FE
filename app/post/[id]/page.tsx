@@ -1,12 +1,10 @@
-"use client";
-
-import SimpleProfile from "../../components/simpleProfile";
-import Header from "../../components/header";
-import PostOptions from "../../components/postOptions";
-import axios from "axios";
 import { useParams } from "next/navigation";
-import { url } from "../../../config";
 import { useEffect, useState } from "react";
+import axios from "axios";
+import Header from "../../components/header";
+import SimpleProfile from "../../components/simpleProfile";
+import PostOptions from "../../components/postOptions";
+import { url } from "../../../config";
 import PostProps from "../../type/type";
 
 interface ExtendedPostProps extends PostProps {
@@ -16,10 +14,9 @@ interface ExtendedPostProps extends PostProps {
 export default function Post() {
   const [data, setData] = useState<ExtendedPostProps | null>(null);
 
-  const params = useParams();
   useEffect(() => {
     axios
-      .get(`${url}/post/${params.id}`)
+      .get(`${url}/post/${data?.postId}`)
       .then((res) => {
         setData(res.data);
       })
@@ -27,6 +24,7 @@ export default function Post() {
         console.log(err);
       });
   }, []);
+
   return (
     <div>
       <Header />
@@ -35,7 +33,7 @@ export default function Post() {
           <div className="w-2/3">
             <h1>{data?.title}</h1>
             <p>{data?.content}</p>
-            <PostOptions />
+            <PostOptions postId={data?.postId} />
           </div>
           <div>
             <SimpleProfile />

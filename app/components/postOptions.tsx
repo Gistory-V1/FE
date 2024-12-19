@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import Heart from "../svg/heart.svg";
 import fill from "../svg/fillHeart.svg";
@@ -8,12 +6,21 @@ import { useState } from "react";
 import axios from "axios";
 import { url } from "../../config";
 import { useParams } from "next/navigation";
+import { useRouter } from "next/router";
 
-export default function PostOptions() {
+interface PostOptionsProps {
+  postId?: number; // postId는 선택적입니다.
+}
+
+export default function PostOptions({ postId }: PostOptionsProps) {
+  // props는 객체 형태로 받습니다.
   const [isLiked, setIsLiked] = useState(false);
   const [option, setOption] = useState(false);
   const [count, setCount] = useState(0);
   const params = useParams();
+
+  const route = useRouter();
+
   function like() {
     setCount(count + 1);
     setIsLiked(true);
@@ -30,6 +37,7 @@ export default function PostOptions() {
         console.log(err);
       });
   }
+
   function cancel() {
     setCount(count - 1);
     setIsLiked(false);
@@ -44,6 +52,7 @@ export default function PostOptions() {
         setIsLiked(true);
       });
   }
+
   return (
     <div>
       <div
@@ -56,13 +65,18 @@ export default function PostOptions() {
           ) : (
             <Image src={fill} alt="하트" onClick={cancel} />
           )}
-          <span>22</span>
+          <span>{count}</span>
         </div>
         <Image src={Option} alt="옵션" onClick={() => setOption(!option)} />
       </div>
       {option && (
         <ul className="">
-          <li style={{ borderBottom: "1px solid #A6A6A6" }}>수정</li>
+          <li
+            onClick={() => route.push(`/postEdit`, { query: { id: postId } })}
+            style={{ borderBottom: "1px solid #A6A6A6" }}
+          >
+            수정
+          </li>
           <li>삭제</li>
         </ul>
       )}
