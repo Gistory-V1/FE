@@ -37,7 +37,7 @@ export default function Post() {
             <PostOptions postId={data?.postId} />
           </div>
           <div>
-            <SimpleProfile />
+            <SimpleProfile name={data?.author || "알 수 없음"} />
           </div>
         </div>
       </div>
