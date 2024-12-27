@@ -1,3 +1,5 @@
+"use client";
+
 import { useParams } from "next/navigation";
 import Header from "../../components/header";
 import Post from "../../components/post";
