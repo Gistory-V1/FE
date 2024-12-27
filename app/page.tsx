@@ -10,13 +10,15 @@ import Lank, { postLankProps } from "./components/lank";
 import Profile from "./components/profile";
 import LoginOption from "./components/loginOption";
 
-const token = localStorage.getItem("token");
-
 export default function Home() {
   const [lankPosts, setLankPosts] = useState<postLankProps[]>([]);
   const [subPosts, setSubPosts] = useState<SubProps[]>([]);
+  const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    setToken(storedToken);
+
     const fetchLankPosts = async () => {
       try {
         const response = await axios.get(`${url}/rank-like`);
