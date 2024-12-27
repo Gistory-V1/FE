@@ -28,8 +28,9 @@ export default function LoginPage() {
         email: data.email,
         password: data.password,
       })
-      .then(() => {
+      .then((res) => {
         router.push("/");
+        localStorage.setItem("token", res.data.accessToken);
       })
       .catch((err) => {
         console.error(err);
