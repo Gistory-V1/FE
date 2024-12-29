@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import Header from "../components/header";
 import axios from "axios";
 import { url } from "../../config";
@@ -10,8 +10,13 @@ export default function WritePage() {
   const router = useRouter();
   const title = useRef<HTMLInputElement>(null);
   const content = useRef<HTMLTextAreaElement>(null);
+  const [token, setToken] = useState<string | null>(null);
 
-  const token = localStorage.getItem("token");
+  // 브라우저 환경에서만 `localStorage` 접근
+  useEffect(() => {
+    setToken(localStorage.getItem("token"));
+  }, []);
+
   async function sendPost() {
     if (title.current?.value === "" || content.current?.value === "") {
       alert("제목과 내용을 입력해주세요");
@@ -35,6 +40,7 @@ export default function WritePage() {
       console.log(e);
     }
   }
+
   return (
     <div>
       <Header />
@@ -47,7 +53,7 @@ export default function WritePage() {
         />
         <textarea
           ref={content}
-          className="py-6 focus:outline-none border-none h-[400px] w-2/3  border rounded resize-none overflow-hidden"
+          className="py-6 focus:outline-none border-none h-[400px] w-2/3 border rounded resize-none overflow-hidden"
           placeholder="여러분들의 생각을 적어보세요"
         />
 
