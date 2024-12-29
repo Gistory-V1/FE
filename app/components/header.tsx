@@ -18,16 +18,6 @@ export default function Header() {
           className="cursor-pointer"
           onClick={() => router.push("/")}
         />
-        <Image
-          className="absolute left-48 top-8 cursor-pointer"
-          src={Search}
-          alt="검색"
-        />
-        <input
-          placeholder="지스토리에 검색"
-          type="text"
-          className="rounded-lg py-2 px-10 w-[560px] border border-color-gray2 focus:outline-none"
-        />
       </div>
       <Image src={Logo} alt="로고" />
     </header>
