@@ -17,6 +17,7 @@ export default function WritePage() {
     setToken(localStorage.getItem("token"));
   }, []);
 
+  console.log(token);
   async function sendPost() {
     if (title.current?.value === "" || content.current?.value === "") {
       alert("제목과 내용을 입력해주세요");
@@ -24,7 +25,7 @@ export default function WritePage() {
     }
     try {
       await axios.post(
-        `${url}/post`,
+        `${url}/post/create`,
         {
           title: title.current?.value,
           content: content.current?.value,
