@@ -11,16 +11,25 @@ export default function WritePage() {
   const title = useRef<HTMLInputElement>(null);
   const content = useRef<HTMLTextAreaElement>(null);
 
+  const token = localStorage.getItem("token");
   async function sendPost() {
     if (title.current?.value === "" || content.current?.value === "") {
       alert("제목과 내용을 입력해주세요");
       return;
     }
     try {
-      await axios.post(`${url}/post`, {
-        title: title.current?.value,
-        content: content.current?.value,
-      });
+      await axios.post(
+        `${url}/post`,
+        {
+          title: title.current?.value,
+          content: content.current?.value,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       router.push("/");
     } catch (e) {
       console.log(e);
