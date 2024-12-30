@@ -41,7 +41,18 @@ export default function Sub({ rank, sub, name }: SubProps) {
 
   const cancel = () => {
     axios
-      .delete(`${url}/sub`)
+      .post(
+        `${url}/subs/cancel`,
+        {
+          name: name,
+          subClick: false,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
       .then((res) => {
         setCount(res.data.subCount);
         setIsSubscribed(false);
