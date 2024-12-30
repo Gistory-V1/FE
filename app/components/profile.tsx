@@ -16,10 +16,12 @@ export default function Profile({ Profile }: { Profile: ProfileData | null }) {
       <div className="flex gap-2 items-center justify-center mb-3">
         <Image width={50} height={50} src={ProfileImage} alt="프로필" />
         <div>
-          <h3 className="text-lg font-bold mb-1 mt-4">모태환 님의 블로그</h3>
+          <h3 className="text-lg font-bold mb-1 mt-4">
+            {Profile?.name} 님의 블로그
+          </h3>
           <div className="mb-4">
             <span className="text-gray-600">구독자 </span>
-            <span className="font-semibold">0명</span>
+            <span className="font-semibold">{Profile?.subCount}명</span>
           </div>
         </div>
       </div>
@@ -35,7 +37,7 @@ export default function Profile({ Profile }: { Profile: ProfileData | null }) {
         </span>
         <div className="h-5 mx-6 text-gray-400">|</div>
         <span
-          onClick={() => route.push("/blog/모태환")}
+          onClick={() => route.push(`/blog/${Profile?.name}`)}
           className="font-bold cursor-pointer"
         >
           내 블로그
@@ -48,7 +50,7 @@ export default function Profile({ Profile }: { Profile: ProfileData | null }) {
         className="flex my-8 justify-between w-full"
       >
         <span>조회수</span>
-        <span className="mb-8 font-bold">0회</span>
+        <span className="mb-8 font-bold">{Profile?.views}회</span>
       </div>
     </div>
   );
