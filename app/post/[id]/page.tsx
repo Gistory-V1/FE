@@ -12,6 +12,7 @@ import PostProps from "../../type/type";
 interface ExtendedPostProps extends PostProps {
   content: string;
   author: string;
+  createdAt: string;
 }
 
 export default function Post() {
