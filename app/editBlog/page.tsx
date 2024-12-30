@@ -42,8 +42,8 @@ export default function EditPage() {
   function send() {
     if (id) {
       axios
-        .put(
-          `${url}/edit`,
+        .post(
+          `${url}/post/update?postId=${id}`,
           {
             postId: Number(id),
             title: title,
