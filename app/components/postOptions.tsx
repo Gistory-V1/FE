@@ -85,7 +85,7 @@ export default function PostOptions({
     <div>
       <div
         style={{ border: "1px solid #A6A6A6" }}
-        className="flex justify-between items-center rounded-2xl px-2 mt-4 py-1 w-[10%]"
+        className="flex justify-between gap-6 items-center rounded-2xl px-2 mt-4 py-1 w-[12%]"
       >
         <div className="flex items-center">
           {!isLiked ? (
@@ -96,22 +96,31 @@ export default function PostOptions({
           <span>{count}</span>
         </div>
         {admin ? (
-          <Image src={Option} alt="옵션" onClick={() => setOption(!option)} />
+          <div className="gap-2 items-center flex flex-col">
+            <button>삭제</button>
+            <button>수정</button>
+          </div>
         ) : (
           <button>구독</button>
         )}
       </div>
-      <ul className={`w-1/5 ${option ? "block" : "hidden"}`}>
+      <ul
+        className={`w-[5%] items-center justify-center ${
+          option ? "block" : "hidden"
+        } `}
+      >
         <li
           onClick={() => {
             localStorage.setItem("postId", postId ? postId.toString() : "");
             route.push(`/editBlog`);
           }}
+          className="text-center pb-2"
           style={{ borderBottom: "1px solid #A6A6A6" }}
         >
           수정
         </li>
         <li
+          className="text-center pt-2"
           onClick={() => {
             axios
               .delete(`${url}/post/delete?postId=${postId}`, {
