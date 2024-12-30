@@ -24,7 +24,11 @@ export default function EditPage() {
   useEffect(() => {
     if (id) {
       axios
-        .get(`${url}/post/${id}`)
+        .get(`${url}/post?postId=${id}`, {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        })
         .then((res) => {
           setTitle(res.data.title);
           setContent(res.data.content);
@@ -38,11 +42,19 @@ export default function EditPage() {
   function send() {
     if (id) {
       axios
-        .put(`${url}/edit`, {
-          postId: Number(id),
-          title: title,
-          content: content,
-        })
+        .put(
+          `${url}/edit`,
+          {
+            postId: Number(id),
+            title: title,
+            content: content,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        )
         .then((res) => {
           console.log("수정되었습니다", res);
           router.push(`/post/${id}`);
