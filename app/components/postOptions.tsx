@@ -83,7 +83,7 @@ export default function PostOptions({
     <div>
       <div
         style={{ border: "1px solid #A6A6A6" }}
-        className="flex justify-between gap-6 items-center rounded-2xl px-2 mt-4 py-1 w-[20%]"
+        className="flex justify-between gap-6 m-4 items-center rounded-2xl px-2 mt-4 py-1 w-[20%]"
       >
         <div className="flex items-center">
           {!isLiked ? (

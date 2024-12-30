@@ -59,8 +59,13 @@ export default function Post() {
               <p>게시글을 불러오는 중입니다...</p>
             ) : data ? (
               <>
-                <h1>{data.title}</h1>
-                <p>{data.content}</p>
+                <h1
+                  style={{ borderBottom: "1px solid #a6a6a6" }}
+                  className="text-[36px] m-4"
+                >
+                  {data.title}
+                </h1>
+                <p className="m-4">{data.content}</p>
                 <PostOptions
                   author={data.author}
                   Like={data.likeCount}
