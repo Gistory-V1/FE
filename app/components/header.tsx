@@ -1,7 +1,6 @@
 import Image from "next/image";
 import TextLogo from "../svg/textlogo.svg";
 import Logo from "../svg/logo.svg";
-import Search from "../svg/search.svg";
 import { useRouter } from "next/navigation";
 
 export default function Header() {
