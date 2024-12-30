@@ -31,7 +31,7 @@ export default function PostOptions({
 
   useEffect(() => {
     setCount(Like);
-    setAdmin(localStorage.getItem("myName") === author ? true : false);
+    setAdmin(localStorage.getItem("myName") == author ? true : false);
   }, []);
 
   function like() {
@@ -85,7 +85,7 @@ export default function PostOptions({
     <div>
       <div
         style={{ border: "1px solid #A6A6A6" }}
-        className="flex justify-between items-center rounded-2xl px-2 mt-4 py-1 w-[100px]"
+        className="flex justify-between items-center rounded-2xl px-2 mt-4 py-1 w-[10%]"
       >
         <div className="flex items-center">
           {!isLiked ? (
@@ -95,7 +95,7 @@ export default function PostOptions({
           )}
           <span>{count}</span>
         </div>
-        {option ? (
+        {admin ? (
           <Image src={Option} alt="옵션" onClick={() => setOption(!option)} />
         ) : (
           <button>구독</button>
