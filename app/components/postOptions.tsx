@@ -25,13 +25,14 @@ export default function PostOptions({
   const [isLiked, setIsLiked] = useState(false);
   const [option, setOption] = useState(false);
   const [count, setCount] = useState(0);
+  const [admin, setAdmin] = useState(false);
   const params = useParams();
 
   const route = useRouter();
 
   useEffect(() => {
     setCount(Like);
-    setOption(localStorage.getItem("myName") === author ? true : false);
+    setAdmin(localStorage.getItem("myName") === author ? true : false);
   }, []);
 
   function like() {
@@ -101,7 +102,7 @@ export default function PostOptions({
           <button>구독</button>
         )}
       </div>
-      <ul className="w-1/5">
+      <ul className={`w-1/5 ${option ? "block" : "hidden"}`}>
         <li
           onClick={() => {
             localStorage.setItem("postId", postId ? postId.toString() : "");
@@ -111,9 +112,22 @@ export default function PostOptions({
         >
           수정
         </li>
-        <li>삭제</li>
+        <li
+          onClick={() => {
+            axios
+              .delete(`${url}/post/delete?postId=${postId}`, {
+                headers: {
+                  Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+              })
+              .then((res) => {
+                route.back();
+              });
+          }}
+        >
+          삭제
+        </li>
       </ul>
-      <button>구독</button>
     </div>
   );
 }
