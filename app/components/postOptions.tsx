@@ -139,9 +139,11 @@ export default function PostOptions({
 
                 .catch((err) => {
                   console.error(err);
+                  setIsSubscribed(true);
                 });
             }}
             className="cursor-pointer"
+            disabled={!isSubscribed}
           >
             {isSubscribed ? "구독중" : "구독"}
           </button>
