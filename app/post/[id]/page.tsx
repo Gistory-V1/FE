@@ -61,11 +61,11 @@ export default function Post() {
               <>
                 <h1
                   style={{ borderBottom: "1px solid #a6a6a6" }}
-                  className="text-[36px] m-4"
+                  className="text-[36px] m-4 pb-8"
                 >
                   {data.title}
                 </h1>
-                <p className="m-4">{data.content}</p>
+                <p className="m-4 text-[22px]">{data.content}</p>
                 <PostOptions
                   author={data.author}
                   Like={data.likeCount}
