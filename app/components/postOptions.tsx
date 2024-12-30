@@ -9,13 +9,19 @@ import axios from "axios";
 import { url } from "../../config";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/navigation";
+import Button from "./button";
 
 interface PostOptionsProps {
   postId?: number;
   Like: any;
+  author: string;
 }
 
-export default function PostOptions({ postId, Like }: PostOptionsProps) {
+export default function PostOptions({
+  postId,
+  Like,
+  author,
+}: PostOptionsProps) {
   const [isLiked, setIsLiked] = useState(false);
   const [option, setOption] = useState(false);
   const [count, setCount] = useState(0);
@@ -25,6 +31,7 @@ export default function PostOptions({ postId, Like }: PostOptionsProps) {
 
   useEffect(() => {
     setCount(Like);
+    setOption(localStorage.getItem("myName") === author ? true : false);
   }, []);
 
   function like() {
@@ -88,22 +95,25 @@ export default function PostOptions({ postId, Like }: PostOptionsProps) {
           )}
           <span>{count}</span>
         </div>
-        <Image src={Option} alt="옵션" onClick={() => setOption(!option)} />
+        {option ? (
+          <Image src={Option} alt="옵션" onClick={() => setOption(!option)} />
+        ) : (
+          <button>구독</button>
+        )}
       </div>
-      {option && (
-        <ul className="">
-          <li
-            onClick={() => {
-              localStorage.setItem("postId", postId ? postId.toString() : "");
-              route.push(`/postEdit`);
-            }}
-            style={{ borderBottom: "1px solid #A6A6A6" }}
-          >
-            수정
-          </li>
-          <li>삭제</li>
-        </ul>
-      )}
+      <ul className="w-1/5">
+        <li
+          onClick={() => {
+            localStorage.setItem("postId", postId ? postId.toString() : "");
+            route.push(`/postEdit`);
+          }}
+          style={{ borderBottom: "1px solid #A6A6A6" }}
+        >
+          수정
+        </li>
+        <li>삭제</li>
+      </ul>
+      <button>구독</button>
     </div>
   );
 }
