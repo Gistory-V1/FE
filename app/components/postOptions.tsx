@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Heart from "../svg/heart.svg";
 import fill from "../svg/fillHeart.svg";
-import Option from "../svg/option.svg";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { url } from "../../config";
