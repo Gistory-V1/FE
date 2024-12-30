@@ -9,7 +9,6 @@ import axios from "axios";
 import { url } from "../../config";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/navigation";
-import Button from "./button";
 
 interface PostOptionsProps {
   postId?: number;
