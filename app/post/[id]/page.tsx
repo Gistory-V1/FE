@@ -8,7 +8,7 @@ import PostOptions from "../../components/postOptions";
 import { url } from "../../../config";
 import Image from "next/image";
 import Profile from "../../svg/logo.svg";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function Post() {
   const [data, setData] = useState<any>(null);
