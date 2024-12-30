@@ -61,7 +61,7 @@ export default function Post() {
               className="flex flex-col gap-6 items-center justify-center px-10 py-4"
             >
               <Image
-                onClick={() => router.push(`/blog/${name}`)}
+                onClick={() => router.push(`/blog/${data?.author}`)}
                 width={100}
                 height={100}
                 src={Profile}
