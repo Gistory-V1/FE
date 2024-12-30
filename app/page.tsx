@@ -10,10 +10,30 @@ import Lank, { postLankProps } from "./components/lank";
 import Profile from "./components/profile";
 import LoginOption from "./components/loginOption";
 
+interface ProfileData {
+  name: string;
+  userId: number;
+  subCount: string;
+  views: string;
+}
+
 export default function Home() {
   const [lankPosts, setLankPosts] = useState<postLankProps[]>([]);
   const [subPosts, setSubPosts] = useState<SubProps[]>([]);
+  const [profile, setProfile] = useState<ProfileData | null>(null);
   const [token, setToken] = useState<string | null>(null);
+
+  function getProfile() {
+    axios
+      .get(`${url}/profile/${localStorage.getItem("myName")}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => {
+        setProfile(res.data);
+      });
+  }
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -62,7 +82,7 @@ export default function Home() {
           className="flex flex-col items-left border-l pl-10 h-full border-l-gray1"
           style={{ borderLeft: "1px solid #868686" }}
         >
-          {!token ? <LoginOption /> : <Profile />}
+          {!token ? <LoginOption /> : <Profile Profile={profile} />}
           <div className="mt-2 flex flex-col gap-5">
             <h2 className="font-extrabold text-[20px]">구독자 왕👑</h2>
             {subPosts.map((post) => (

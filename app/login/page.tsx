@@ -31,6 +31,7 @@ export default function LoginPage() {
       .then((res) => {
         router.push("/");
         localStorage.setItem("token", res.data.accessToken);
+        localStorage.setItem("myName", res.data.name);
       })
       .catch((err) => {
         console.error(err);

@@ -2,7 +2,14 @@ import Image from "next/image";
 import ProfileImage from "../svg/logo.svg";
 import { useRouter } from "next/navigation";
 
-export default function Profile() {
+interface ProfileData {
+  name: string;
+  userId: number;
+  subCount: string;
+  views: string;
+}
+
+export default function Profile({ Profile }: { Profile: ProfileData | null }) {
   const route = useRouter();
   return (
     <div className="flex flex-col items-start p-4">
@@ -18,7 +25,7 @@ export default function Profile() {
       </div>
       <div
         style={{ border: "1px solid" }}
-        className="border-solid gap-4 flex  items-center rounded-lg px-8 py-4"
+        className="border-solid gap-4 flex items-center rounded-lg px-8 py-4"
       >
         <span
           onClick={() => route.push("/write")}
@@ -38,9 +45,9 @@ export default function Profile() {
       </div>
       <div
         style={{ borderBottom: "1px solid #111111" }}
-        className=" flex my-8 justify-between w-full"
+        className="flex my-8 justify-between w-full"
       >
-        <span className="">조회수</span>
+        <span>조회수</span>
         <span className="mb-8 font-bold">0회</span>
       </div>
     </div>
