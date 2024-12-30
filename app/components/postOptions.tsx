@@ -21,7 +21,6 @@ export default function PostOptions({
   author,
 }: PostOptionsProps) {
   const [isLiked, setIsLiked] = useState(false);
-  const [option, setOption] = useState(false);
   const [count, setCount] = useState(0);
   const [admin, setAdmin] = useState(false);
   const params = useParams();
@@ -124,11 +123,7 @@ export default function PostOptions({
           <button className="cursor-pointer">구독</button>
         )}
       </div>
-      <ul
-        className={`w-[5%] items-center justify-center ${
-          option ? "block" : "hidden"
-        } `}
-      >
+      <ul className={`w-[5%] items-center justify-center ${"block"} `}>
         <li
           onClick={() => {
             localStorage.setItem("postId", postId ? postId.toString() : "");
