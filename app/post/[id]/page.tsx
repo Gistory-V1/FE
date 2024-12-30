@@ -8,8 +8,11 @@ import PostOptions from "../../components/postOptions";
 import { url } from "../../../config";
 import PostProps from "../../type/type";
 
+console.log(localStorage.getItem("token"));
+
 interface ExtendedPostProps extends PostProps {
   content: string;
+  author: string;
 }
 
 export default function Post() {
