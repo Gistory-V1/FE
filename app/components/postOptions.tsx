@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 
 interface PostOptionsProps {
   postId?: number;
-  Like: any;
+  Like: number;
   author: string;
 }
 
@@ -30,7 +30,7 @@ export default function PostOptions({
   useEffect(() => {
     setCount(Like);
     setAdmin(localStorage.getItem("myName") == author ? true : false);
-  }, []);
+  }, [Like, author]);
 
   function like() {
     setCount(count + 1);
