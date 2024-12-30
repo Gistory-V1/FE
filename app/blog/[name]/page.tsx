@@ -45,8 +45,10 @@ export default function BlogPage() {
               style={{ borderBottom: "1px solid #A6A6A6" }}
               className="flex font-bold text-[20px] pb-6 w-[650px]"
             >
-              <h3>전체 글 </h3>
-              <h3 className="text-red-600">{posts ? posts.length : 0}</h3>
+              <div className="flex gap-4 items-center">
+                <h3>전체 글 </h3>
+                <h3 className="text-red-600">{posts ? posts.length : 0}</h3>
+              </div>
             </div>
             {posts && posts.length > 0 ? (
               posts.map((post) => <Post key={post.postId} post={post} />)
