@@ -1,13 +1,11 @@
 import Image from "next/image";
 import Profile from "../svg/logo.svg";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
-interface SimpleProfileProps {
-  name: string;
-}
-
-export default function SimpleProfile({ name }: SimpleProfileProps) {
+export default function SimpleProfile() {
   const router = useRouter();
+  const params = useParams();
+  const name = params?.name;
   return (
     <div
       style={{ border: "1px solid #A6A6A6" }}

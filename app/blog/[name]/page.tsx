@@ -52,7 +52,7 @@ export default function BlogPage() {
               <p>게시글이 없습니다.</p>
             )}
           </div>
-          <SimpleProfile name={name} />
+          <SimpleProfile />
         </div>
       </div>
     </div>
