@@ -51,7 +51,14 @@ export default function PostOptions({ postId }: PostOptionsProps) {
     setCount(count - 1);
     setIsLiked(false);
     axios
-      .delete(`${url}/like`)
+      .delete(`${url}/post/like/cancel?postId=${params.id}`, {
+        data: {
+          likeClick: false,
+        },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
       .then((res) => {
         setCount(res.data.likeCount);
       })
