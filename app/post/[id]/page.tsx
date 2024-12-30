@@ -8,7 +8,7 @@ import PostOptions from "../../components/postOptions";
 import { url } from "../../../config";
 import PostProps from "../../type/type";
 import Image from "next/image";
-import Profile from "../svg/logo.svg";
+import Profile from "../../svg/logo.svg";
 import { useRouter } from "next/router";
 
 interface ExtendedPostProps extends PostProps {
