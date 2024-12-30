@@ -97,8 +97,29 @@ export default function PostOptions({
         </div>
         {admin ? (
           <div className="cursor-pointer gap-2 items-center flex flex-col">
-            <button>삭제</button>
-            <button>수정</button>
+            <button
+              onClick={() => {
+                axios
+                  .delete(`${url}/post/delete?postId=${postId}`, {
+                    headers: {
+                      Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    },
+                  })
+                  .then((res) => {
+                    route.back();
+                  });
+              }}
+            >
+              삭제
+            </button>
+            <button
+              onClick={() => {
+                localStorage.setItem("postId", postId ? postId.toString() : "");
+                route.push(`/postEdit`);
+              }}
+            >
+              수정
+            </button>
           </div>
         ) : (
           <button className="cursor-pointer">구독</button>
