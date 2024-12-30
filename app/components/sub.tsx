@@ -4,7 +4,8 @@ import Image from "next/image";
 import Plus from "../svg/plus.svg";
 import axios from "axios";
 import { url } from "../../config";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export interface SubProps {
   rank: number;
@@ -13,9 +14,12 @@ export interface SubProps {
 }
 
 export default function Sub({ rank, sub, name }: SubProps) {
-  const [count, setCount] = useState(sub);
+  const [count, setCount] = useState(0);
   const [isSubscribed, setIsSubscribed] = useState(false);
-
+  const route = useRouter();
+  useEffect(() => {
+    setCount(sub);
+  }, [sub]);
   const subscribe = () => {
     axios
       .post(
@@ -64,7 +68,10 @@ export default function Sub({ rank, sub, name }: SubProps) {
   };
 
   return (
-    <div className="flex cursor-pointer justify-between items-center w-[420px] rounded-md p-4 bg-gray4">
+    <div
+      onClick={() => route.push(`/blog/${name}`)}
+      className="flex cursor-pointer justify-between items-center w-[420px] rounded-md p-4 bg-gray4"
+    >
       <div className="flex gap-4 items-center">
         <span className="font-bold text-black1 text-[30px]">{rank}</span>
         <div className="flex gap-2 flex-col">
