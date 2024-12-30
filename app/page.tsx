@@ -21,7 +21,11 @@ export default function Home() {
 
     const fetchLankPosts = async () => {
       try {
-        const response = await axios.get(`${url}/rank-like`);
+        const response = await axios.get(`${url}/rank-views`, {
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
+        });
         setLankPosts(response.data);
       } catch (error) {
         console.error(error);
@@ -30,7 +34,11 @@ export default function Home() {
 
     const fetchSubPosts = async () => {
       try {
-        const response = await axios.get(`${url}/rank-sub`);
+        const response = await axios.get(`${url}/rank-subs`, {
+          headers: {
+            Authorization: `Bearer ${storedToken}`,
+          },
+        });
         setSubPosts(response.data);
       } catch (error) {
         console.error(error);
