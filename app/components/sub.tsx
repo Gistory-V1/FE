@@ -18,7 +18,18 @@ export default function Sub({ rank, sub, name }: SubProps) {
 
   const subscribe = () => {
     axios
-      .post(`${url}/sub`)
+      .post(
+        `${url}/subs`,
+        {
+          name: name,
+          subClick: true,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
       .then((res) => {
         setCount(res.data.subCount);
         setIsSubscribed(true);
