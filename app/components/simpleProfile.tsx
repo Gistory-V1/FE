@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Profile from "../svg/logo.svg";
 import { useParams, useRouter } from "next/navigation";

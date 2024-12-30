@@ -20,20 +20,23 @@ export default function Post() {
   useEffect(() => {
     if (postId) {
       setIsLoading(true);
-      axios
-        .get(`${url}/post?postId=${postId}`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        })
-        .then((res) => {
-          setData(res.data);
-          setIsLoading(false);
-        })
-        .catch((err) => {
-          console.error("Error fetching post data:", err);
-          setIsLoading(false);
-        });
+      const token = localStorage.getItem("token");
+      if (token) {
+        axios
+          .get(`${url}/post?postId=${postId}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          })
+          .then((res) => {
+            setData(res.data);
+            setIsLoading(false);
+          })
+          .catch((err) => {
+            console.error("Error fetching post data:", err);
+            setIsLoading(false);
+          });
+      }
     }
   }, [postId]);
 
@@ -61,7 +64,9 @@ export default function Post() {
               className="flex flex-col gap-6 items-center justify-center px-10 py-4"
             >
               <Image
-                onClick={() => router.push(`/blog/${data?.author}`)}
+                onClick={() =>
+                  data?.author && router.push(`/blog/${data?.author}`)
+                }
                 width={100}
                 height={100}
                 src={Profile}
@@ -70,7 +75,9 @@ export default function Post() {
               <div className="flex flex-col items-center gap-2">
                 <h3 className="font-bold">{data?.author} 님의 블로그</h3>
                 <span className="text-[12px]">
-                  {data?.author} 님의 블로그 입니다
+                  {data?.author
+                    ? `${data?.author} 님의 블로그 입니다`
+                    : "저자 정보가 없습니다."}
                 </span>
               </div>
             </div>

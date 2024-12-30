@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Heart from "../svg/heart.svg";
 import fill from "../svg/fillHeart.svg";
@@ -6,7 +8,7 @@ import { useState } from "react";
 import axios from "axios";
 import { url } from "../../config";
 import { useParams } from "next/navigation";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 interface PostOptionsProps {
   postId?: number;
