@@ -4,12 +4,30 @@ import { useParams } from "next/navigation";
 import Header from "../../components/header";
 import Post from "../../components/post";
 import SimpleProfile from "../../components/simpleProfile";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { url } from "../../../config";
+import PostProps from "../../type/type";
 
 export default function BlogPage() {
+  const [posts, setPosts] = useState<PostProps[] | null>(null);
+
   const params = useParams();
   const name = Array.isArray(params.name)
     ? params.name[0]
     : params.name || "알 수 없음";
+
+  useEffect(() => {
+    axios
+      .get(`${url}/post/list/${name}`)
+      .then((res) => {
+        setPosts(res.data); // API 응답 데이터 설정
+      })
+      .catch((err) => {
+        console.error("Failed to fetch posts:", err);
+        setPosts([]); // 에러가 발생할 경우 빈 배열로 초기화
+      });
+  }, [name]);
 
   return (
     <div>
@@ -23,9 +41,13 @@ export default function BlogPage() {
               className="flex font-bold text-[20px] pb-6 w-[650px]"
             >
               <h3>전체 글 </h3>
-              <h3 className="text-red-600"> 1</h3>
+              <h3 className="text-red-600">{posts ? posts.length : 0}</h3>
             </div>
-            <Post post={example} />
+            {posts && posts.length > 0 ? (
+              posts.map((post) => <Post key={post.postId} post={post} />)
+            ) : (
+              <p>게시글이 없습니다.</p>
+            )}
           </div>
           <SimpleProfile name={name} />
         </div>
@@ -33,13 +55,3 @@ export default function BlogPage() {
     </div>
   );
 }
-
-const example = {
-  postId: 1,
-  title: "dps",
-  author: "skdi",
-  view: 2,
-  createdAt: "23시간 전",
-  sub: 3,
-  like: 3,
-};

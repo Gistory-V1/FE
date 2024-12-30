@@ -1,11 +1,9 @@
 interface PostProps {
   postId: number;
   title: string;
-  author: string;
-  view: number;
-  createdAt: string;
-  sub: number;
-  like: number;
+  content: string;
+  likeCount: number;
+  views: number;
 }
 
 export default PostProps;
