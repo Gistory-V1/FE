@@ -4,7 +4,7 @@ import Image from "next/image";
 import Heart from "../svg/heart.svg";
 import fill from "../svg/fillHeart.svg";
 import Option from "../svg/option.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { url } from "../../config";
 import { useParams } from "next/navigation";
@@ -12,15 +12,20 @@ import { useRouter } from "next/navigation";
 
 interface PostOptionsProps {
   postId?: number;
+  Like: any;
 }
 
-export default function PostOptions({ postId }: PostOptionsProps) {
+export default function PostOptions({ postId, Like }: PostOptionsProps) {
   const [isLiked, setIsLiked] = useState(false);
   const [option, setOption] = useState(false);
   const [count, setCount] = useState(0);
   const params = useParams();
 
   const route = useRouter();
+
+  useEffect(() => {
+    setCount(Like);
+  }, []);
 
   function like() {
     setCount(count + 1);

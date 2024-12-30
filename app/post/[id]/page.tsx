@@ -52,7 +52,7 @@ export default function Post() {
               <>
                 <h1>{data.title}</h1>
                 <p>{data.content}</p>
-                <PostOptions postId={data.postId} />
+                <PostOptions Like={data.likeCount} postId={data.postId} />
               </>
             ) : (
               <p>게시글을 찾을 수 없습니다.</p>
