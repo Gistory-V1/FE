@@ -1,8 +1,8 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Heart from "../svg/heart.svg";
-import { useRouter } from "next/navigation";
 
 interface PostProps {
   postId: number;
@@ -13,10 +13,10 @@ interface PostProps {
 }
 
 export default function Post({ post }: { post: PostProps }) {
-  const route = useRouter();
+  const router = useRouter();
   return (
     <div
-      onClick={() => route.push(`/post/${post.postId}`)}
+      onClick={() => router.push(`/post/${post.postId}`)}
       style={{ borderBottom: "1px solid #A6A6A6" }}
       className="flex flex-col gap-5 px-4 py-3 border-b border-b-gray-400 w-[650px]"
     >
