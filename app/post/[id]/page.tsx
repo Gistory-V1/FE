@@ -10,10 +10,19 @@ import Image from "next/image";
 import Profile from "../../svg/logo.svg";
 import { useRouter } from "next/navigation";
 
+interface PostProps {
+  postId: number;
+  title: string;
+  content: string;
+  likeCount: number;
+  views: number;
+  author: string; // 추가: `author` 타입 정의
+}
+
 export default function Post() {
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<PostProps | null>(null); // `data`의 초기값과 타입 수정
   const [isLoading, setIsLoading] = useState(true);
-  const params = useParams();
+  const params = useParams(); // 타입 명시
   const postId = params.id;
   const router = useRouter();
 
