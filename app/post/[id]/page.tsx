@@ -17,7 +17,11 @@ export default function Post() {
 
   useEffect(() => {
     axios
-      .get(`${url}/post/${data?.postId}`)
+      .get(`${url}/post/${data?.postId}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
       .then((res) => {
         setData(res.data);
       })
