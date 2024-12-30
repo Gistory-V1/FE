@@ -103,7 +103,7 @@ export default function PostOptions({
                       Authorization: `Bearer ${localStorage.getItem("token")}`,
                     },
                   })
-                  .then((res) => {
+                  .then(() => {
                     route.back();
                   });
               }}
@@ -143,7 +143,7 @@ export default function PostOptions({
                   Authorization: `Bearer ${localStorage.getItem("token")}`,
                 },
               })
-              .then((res) => {
+              .then(() => {
                 route.back();
               });
           }}
