@@ -25,7 +25,11 @@ export default function Home() {
 
   function getProfile() {
     axios
-      .get(`${url}/profile/${localStorage.getItem("myName")}`)
+      .get(`${url}/profile/${localStorage.getItem("myName")}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
       .then((res) => {
         setProfile(res.data);
       });
