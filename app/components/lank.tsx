@@ -18,7 +18,7 @@ export default function Lank({ post }: { post: postLankProps }) {
     <div
       onClick={() => route.push(`/post/${post.postId}`)}
       style={{ borderBottom: "1px solid #D9D9D9" }}
-      className="flex flex-col px-0 gap-5 py-3 border-b border-b-gray-400 w-full"
+      className="flex flex-col px-0 gap-5 py-3 border-b cursor-pointer border-b-gray-400 w-full"
     >
       <div className="text-gray3">
         <span className="font-bold text-[30px]">{post.rank}/</span>

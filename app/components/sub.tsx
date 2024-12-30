@@ -64,7 +64,7 @@ export default function Sub({ rank, sub, name }: SubProps) {
   };
 
   return (
-    <div className="flex justify-between items-center w-[420px] rounded-md p-4 bg-gray4">
+    <div className="flex cursor-pointer justify-between items-center w-[420px] rounded-md p-4 bg-gray4">
       <div className="flex gap-4 items-center">
         <span className="font-bold text-black1 text-[30px]">{rank}</span>
         <div className="flex gap-2 flex-col">
