@@ -82,7 +82,7 @@ export default function EditPage() {
           className="py-6 focus:outline-none border-none h-[400px] w-2/3 border rounded resize-none overflow-hidden"
           placeholder="여러분들의 생각을 적어보세요"
         />
-        <Black label="작성" onClick={send} />
+        <Black label="수정" onClick={send} />
       </div>
     </div>
   );
