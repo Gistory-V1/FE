@@ -6,19 +6,12 @@ import { useParams } from "next/navigation";
 import Header from "../../components/header";
 import PostOptions from "../../components/postOptions";
 import { url } from "../../../config";
-import PostProps from "../../type/type";
 import Image from "next/image";
 import Profile from "../../svg/logo.svg";
 import { useRouter } from "next/router";
 
-interface ExtendedPostProps extends PostProps {
-  content: string;
-  author: string;
-  createdAt: string;
-}
-
 export default function Post() {
-  const [data, setData] = useState<ExtendedPostProps | null>(null);
+  const [data, setData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
   const params = useParams();
   const postId = params.id;
