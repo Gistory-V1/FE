@@ -23,6 +23,7 @@ export default function PostOptions({
   const [isLiked, setIsLiked] = useState(false);
   const [count, setCount] = useState(0);
   const [admin, setAdmin] = useState(false);
+  const [isSubscribed, setIsSubscribed] = useState(false);
   const params = useParams();
 
   const route = useRouter();
@@ -120,7 +121,30 @@ export default function PostOptions({
             </button>
           </div>
         ) : (
-          <button className="cursor-pointer">구독</button>
+          <button
+            onClick={() => {
+              axios
+                .post(
+                  `${url}/subs`,
+                  {
+                    name: author,
+                    subClick: true,
+                  },
+                  {
+                    headers: {
+                      Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    },
+                  }
+                )
+
+                .catch((err) => {
+                  console.error(err);
+                });
+            }}
+            className="cursor-pointer"
+          >
+            {isSubscribed ? "구독중" : "구독"}
+          </button>
         )}
       </div>
     </div>
