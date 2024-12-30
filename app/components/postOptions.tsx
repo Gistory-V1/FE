@@ -96,12 +96,12 @@ export default function PostOptions({
           <span>{count}</span>
         </div>
         {admin ? (
-          <div className="gap-2 items-center flex flex-col">
+          <div className="cursor-pointer gap-2 items-center flex flex-col">
             <button>삭제</button>
             <button>수정</button>
           </div>
         ) : (
-          <button>구독</button>
+          <button className="cursor-pointer">구독</button>
         )}
       </div>
       <ul
