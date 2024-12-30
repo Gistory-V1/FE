@@ -106,7 +106,7 @@ export default function PostOptions({
         <li
           onClick={() => {
             localStorage.setItem("postId", postId ? postId.toString() : "");
-            route.push(`/postEdit`);
+            route.push(`/editBlog`);
           }}
           style={{ borderBottom: "1px solid #A6A6A6" }}
         >
