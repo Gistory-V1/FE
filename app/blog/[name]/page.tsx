@@ -19,13 +19,17 @@ export default function BlogPage() {
 
   useEffect(() => {
     axios
-      .get(`${url}/post/list/${name}`)
+      .get(`${url}/post/list?name=${name}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
       .then((res) => {
-        setPosts(res.data); // API 응답 데이터 설정
+        setPosts(res.data);
       })
       .catch((err) => {
         console.error("Failed to fetch posts:", err);
-        setPosts([]); // 에러가 발생할 경우 빈 배열로 초기화
+        setPosts([]);
       });
   }, [name]);
 

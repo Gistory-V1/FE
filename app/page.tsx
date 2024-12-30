@@ -22,10 +22,9 @@ export default function Home() {
   const [subPosts, setSubPosts] = useState<SubProps[]>([]);
   const [profile, setProfile] = useState<ProfileData | null>(null);
   const [token, setToken] = useState<string | null>(null);
-
   function getProfile() {
     axios
-      .get(`${url}/profile/${localStorage.getItem("myName")}`, {
+      .get(`${url}/profile?name=${localStorage.getItem("myName")}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
