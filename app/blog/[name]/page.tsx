@@ -13,11 +13,10 @@ export default function BlogPage() {
   const [posts, setPosts] = useState<PostProps[] | null>(null);
 
   const params = useParams();
-  const name = Array.isArray(params.name)
-    ? params.name[0]
-    : params.name || "알 수 없음";
-
+  const name = typeof params?.name === "string" ? params.name : "";
   useEffect(() => {
+    if (!name) return;
+
     axios
       .get(`${url}/post/list?name=${name}`, {
         headers: {
