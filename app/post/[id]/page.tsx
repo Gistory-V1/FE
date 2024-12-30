@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "next/navigation";
 import Header from "../../components/header";
-import SimpleProfile from "../../components/simpleProfile";
 import PostOptions from "../../components/postOptions";
 import { url } from "../../../config";
 import PostProps from "../../type/type";
+import Image from "next/image";
+import Profile from "../svg/logo.svg";
+import { useRouter } from "next/router";
 
 interface ExtendedPostProps extends PostProps {
   content: string;
@@ -20,6 +22,7 @@ export default function Post() {
   const [isLoading, setIsLoading] = useState(true);
   const params = useParams();
   const postId = params.id;
+  const router = useRouter();
 
   useEffect(() => {
     if (postId) {
@@ -60,7 +63,24 @@ export default function Post() {
             )}
           </div>
           <div>
-            <SimpleProfile name={data?.author || "알 수 없음"} />
+            <div
+              style={{ border: "1px solid #A6A6A6" }}
+              className="flex flex-col gap-6 items-center justify-center px-10 py-4"
+            >
+              <Image
+                onClick={() => router.push(`/blog/${name}`)}
+                width={100}
+                height={100}
+                src={Profile}
+                alt="프로필"
+              />
+              <div className="flex flex-col items-center gap-2">
+                <h3 className="font-bold">{data?.author} 님의 블로그</h3>
+                <span className="text-[12px]">
+                  {data?.author} 님의 블로그 입니다
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
