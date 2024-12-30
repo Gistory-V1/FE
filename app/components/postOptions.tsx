@@ -123,34 +123,6 @@ export default function PostOptions({
           <button className="cursor-pointer">구독</button>
         )}
       </div>
-      <ul className={`w-[5%] items-center justify-center ${"block"} `}>
-        <li
-          onClick={() => {
-            localStorage.setItem("postId", postId ? postId.toString() : "");
-            route.push(`/editBlog`);
-          }}
-          className="text-center pb-2"
-          style={{ borderBottom: "1px solid #A6A6A6" }}
-        >
-          수정
-        </li>
-        <li
-          className="text-center pt-2"
-          onClick={() => {
-            axios
-              .delete(`${url}/post/delete?postId=${postId}`, {
-                headers: {
-                  Authorization: `Bearer ${localStorage.getItem("token")}`,
-                },
-              })
-              .then(() => {
-                route.back();
-              });
-          }}
-        >
-          삭제
-        </li>
-      </ul>
     </div>
   );
 }
