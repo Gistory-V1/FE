@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Heart from "../svg/heart.svg";
+import { useRouter } from "next/navigation";
 
 export interface postLankProps {
   rank: number;
@@ -8,11 +9,14 @@ export interface postLankProps {
   likeCount: number;
   views: number;
   createdAt: string;
+  postId: number;
 }
 
 export default function Lank({ post }: { post: postLankProps }) {
+  const route = useRouter();
   return (
     <div
+      onClick={() => route.push(`/post/${post.postId}`)}
       style={{ borderBottom: "1px solid #D9D9D9" }}
       className="flex flex-col px-0 gap-5 py-3 border-b border-b-gray-400 w-full"
     >
