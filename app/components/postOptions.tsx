@@ -26,9 +26,17 @@ export default function PostOptions({ postId }: PostOptionsProps) {
     setCount(count + 1);
     setIsLiked(true);
     axios
-      .post(`${url}/like`, {
-        postId: params.id,
-      })
+      .post(
+        `${url}/post/like?postId=${params.id}`,
+        {
+          likeClick: true,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
       .then((res) => {
         setCount(res.data.likeCount);
       })
