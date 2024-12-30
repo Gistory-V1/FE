@@ -115,7 +115,7 @@ export default function PostOptions({
             <button
               onClick={() => {
                 localStorage.setItem("postId", postId ? postId.toString() : "");
-                route.push(`/postEdit`);
+                route.push(`/editBlog`);
               }}
             >
               수정
