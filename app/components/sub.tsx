@@ -65,10 +65,12 @@ export default function Sub({ rank, sub, name }: SubProps) {
 
   return (
     <div className="flex justify-between items-center w-[420px] rounded-md p-4 bg-gray4">
-      <span className="font-bold text-black1 text-[30px]">{rank}</span>
-      <div className="flex gap-2 flex-col">
-        <h3 className="text-20 font-bold">{name}</h3>
-        <span className="text-gray3 text-[12px]">✅ 구독자 {count}명</span>
+      <div className="flex gap-4 items-center">
+        <span className="font-bold text-black1 text-[30px]">{rank}</span>
+        <div className="flex gap-2 flex-col">
+          <h3 className="text-20 font-bold">{name}</h3>
+          <span className="text-gray3 text-[12px]">✅ 구독자 {count}명</span>
+        </div>
       </div>
       <button
         onClick={isSubscribed ? cancel : subscribe}
