@@ -86,6 +86,7 @@ export default function Sub({ rank, sub, name }: SubProps) {
         className="gap-1 border border-black1 text-[14px] py-2 px-3 rounded-2xl flex items-center justify-center"
       >
         <Image src={Plus} alt="구독" />
+        {isSubscribed ? "구독 취소" : "구독"}
       </button>
     </div>
   );
