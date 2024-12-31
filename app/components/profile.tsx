@@ -43,7 +43,16 @@ export default function Profile({ Profile }: { Profile: ProfileData | null }) {
           내 블로그
         </span>
         <div className="h-5 mx-6 text-gray-400">|</div>
-        <span className="font-bold cursor-pointer"> 관리 </span>
+        <span
+          onClick={() => {
+            localStorage.removeItem("token");
+            route.push("/login");
+          }}
+          className="font-bold cursor-pointer"
+        >
+          {" "}
+          로그아웃{" "}
+        </span>
       </div>
       <div
         style={{ borderBottom: "1px solid #111111" }}
