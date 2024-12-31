@@ -1,6 +1,8 @@
 import Image from "next/image";
 import ProfileImage from "../svg/logo.svg";
 import { useRouter } from "next/navigation";
+import axios from "axios";
+import { url } from "../../config";
 
 interface ProfileData {
   name: string;
@@ -45,6 +47,11 @@ export default function Profile({ Profile }: { Profile: ProfileData | null }) {
         <div className="h-5 mx-6 text-gray-400">|</div>
         <span
           onClick={() => {
+            axios.delete(`${url}/auth/logout`, {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+            });
             localStorage.removeItem("token");
             route.push("/login");
           }}
