@@ -68,14 +68,16 @@ export default function Sub({ rank, sub, name }: SubProps) {
   };
 
   return (
-    <div
-      onClick={() => route.push(`/blog/${name}`)}
-      className="flex cursor-pointer justify-between items-center w-[420px] rounded-md p-4 bg-gray4"
-    >
+    <div className="flex cursor-pointer justify-between items-center w-[420px] rounded-md p-4 bg-gray4">
       <div className="flex gap-4 items-center">
         <span className="font-bold text-black1 text-[30px]">{rank}</span>
         <div className="flex gap-2 flex-col">
-          <h3 className="text-20 font-bold">{name}</h3>
+          <h3
+            onClick={() => route.push(`/blog/${name}`)}
+            className="text-20 font-bold"
+          >
+            {name}
+          </h3>
           <span className="text-gray3 text-[12px]">✅ 구독자 {count}명</span>
         </div>
       </div>
@@ -84,7 +86,6 @@ export default function Sub({ rank, sub, name }: SubProps) {
         className="gap-1 border border-black1 text-[14px] py-2 px-3 rounded-2xl flex items-center justify-center"
       >
         <Image src={Plus} alt="구독" />
-        {isSubscribed ? "구독 취소" : "구독"}
       </button>
     </div>
   );
